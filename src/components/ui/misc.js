@@ -23,3 +23,22 @@ export const Tag = props => {
     return template;
   }
 };
+
+export const firebaseLooper = (snapshot) => {
+  const data = [];
+  snapshot.forEach(childSnapshot => {
+    data.push({
+      ...childSnapshot.val(),
+      id: childSnapshot.key
+    });
+  });
+  return data;
+};
+
+export const reverseArray = accArray => {
+  let reversedArray = [];
+  for(let i = accArray.length - 1; i >= 0; i--) {
+    reversedArray.push(accArray[i]);
+  }
+  return reversedArray;
+}

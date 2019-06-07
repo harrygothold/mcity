@@ -48,11 +48,6 @@ class Stripes extends Component {
           rotate: strip.rotate,
           top: strip.top,
           timing: { delay: strip.delay, duration: 200, ease: easePolyOut },
-          events: {
-            end() {
-              console.log("end");
-            }
-          }
         }}
       >
         {({ background, opacity, left, rotate, top }) => {

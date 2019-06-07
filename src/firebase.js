@@ -15,9 +15,10 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const firebaseDb = firebase.database();
-firebaseDb
-  .ref("matches")
-  .once("value")
-  .then(snapshot => {
-    console.log(snapshot.val());
-  });
+
+const firebaseMatches = firebaseDb.ref('matches');
+
+export {
+  firebase,
+  firebaseMatches
+}
