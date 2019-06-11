@@ -1,7 +1,7 @@
 import React from "react";
 import Featured from "./featured";
 import MatchesHome from "./matches";
-import MeetPlayers from "./MeetPlayers/Cards";
+import MeetPlayers from "./MeetPlayers/";
 
 const Home = () => {
   return (

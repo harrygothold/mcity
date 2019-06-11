@@ -1,51 +1,68 @@
-import React, { Component } from 'react';
-import Stripes from '../../../resources/images/stripes.png';
-import { Tag } from '../../ui/misc';
+import React, { Component } from "react";
+import { easePolyOut } from "d3-ease";
+import Animate from "react-move/Animate";
+import Otamendi from "../../../resources/images/players/Otamendi.png";
+import PlayerCard from "../../ui/PlayerCard";
 
-class MeetPlayers extends Component {
-    state = {};
-    render() {
-        return (
-            <div className='home_meetplayers' style={{
-                background: `#fff url(${Stripes})`
-            }}>
-            <div className="container">
-                <div className="home_meetplayers_wrapper">
-                    <div className="home_card_wrapper">
-                        card
-                    </div>
-                    <div className="home_text_wrapper">
-                        <div>
-                            <Tag bck='#0e1731' size='100px' color='#fff' add={{
-                                display: 'inline-block',
-                                marginBottom: '20px'
-                            }}>Meet</Tag>
-                        </div>
-                        <div>
-                            <Tag bck='#0e1731' size='100px' color='#fff' add={{
-                                display: 'inline-block',
-                                marginBottom: '20px'
-                            }}>The</Tag>
-                        </div>
-                        <div>
-                            <Tag bck='#0e1731' size='100px' color='#fff' add={{
-                                display: 'inline-block',
-                                marginBottom: '20px'
-                            }}>Players</Tag>
-                        </div>
-                        <div>
-                        <Tag bck='#fff' size='27px' color='#0e1731' link linkto='/the_team' add={{
-                            display: 'inline-block',
-                            marginBottom: '27px',
-                            border: '1px solid #0e1731'
-                        }}>See More Players</Tag>
-                        </div>
-                    </div>
-                </div>
+class HomeCards extends Component {
+  state = {
+    cards: [
+      {
+        bottom: 90,
+        left: 300
+      },
+      {
+        bottom: 60,
+        left: 200
+      },
+      {
+        bottom: 30,
+        left: 100
+      },
+      {
+        bottom: 0,
+        left: 0
+      }
+    ]
+  };
+  showAnimateCards = () =>
+    this.state.cards.map((card, i) => (
+      <Animate
+        key={i}
+        show={this.props.show}
+        start={{
+          left: 0,
+          bottom: 0
+        }}
+        enter={{
+          left: card.left,
+          bottom: card.bottom,
+          timing: { duration: 500, ease: easePolyOut }
+        }}
+      >
+        {({ left, bottom }) => {
+          return (
+            <div
+              style={{
+                position: "absolute",
+                left,
+                bottom
+              }}
+            >
+              <PlayerCard
+                number="30"
+                name="Nicolas"
+                lastname="Otamendi"
+                bck={Otamendi}
+              />
             </div>
-            </div>
-        );
-    }
+          );
+        }}
+      </Animate>
+    ));
+  render() {
+    return <div>{this.showAnimateCards()}</div>;
+  }
 }
 
-export default MeetPlayers;
+export default HomeCards;
