@@ -11,8 +11,8 @@ const App = (props) => (
   </BrowserRouter>
 );
 
-firebase.auth().onAuthStateChanged().then((user) => {
-  ReactDOM.render(<App user={user} />, document.getElementById("root"));
-}).catch(err => console.error(err));
+firebase.auth().onAuthStateChanged((user)=>{
+  ReactDOM.render(<App user={user}/>, document.getElementById('root'));
+});
 
 
