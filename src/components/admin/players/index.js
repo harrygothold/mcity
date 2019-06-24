@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import AdminLayout from "../../../Hoc/AdminLayout.js";
+import AdminLayout from "../../../Hoc/AdminLayout";
+
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -10,23 +11,26 @@ import Paper from "@material-ui/core/Paper";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { firebasePlayers } from "../../../firebase";
-import { firebaseLooper } from "../../ui/misc";
+import { firebaseLooper, reverseArray } from "../../ui/misc";
 
 class AdminPlayers extends Component {
   state = {
-    isLoading: true,
+    isloading: true,
     players: []
   };
 
   componentDidMount() {
     firebasePlayers.once("value").then(snapshot => {
       const players = firebaseLooper(snapshot);
-      this.setState({ players, isLoading: false });
+
+      this.setState({
+        isloading: false,
+        players: reverseArray(players)
+      });
     });
   }
 
   render() {
-    const { players, isLoading } = this.state;
     return (
       <AdminLayout>
         <div>
@@ -34,15 +38,15 @@ class AdminPlayers extends Component {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>First Name</TableCell>
-                  <TableCell>Last Name</TableCell>
+                  <TableCell>First name</TableCell>
+                  <TableCell>Last name</TableCell>
                   <TableCell>Number</TableCell>
                   <TableCell>Position</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {players
-                  ? players.map((player, i) => (
+                {this.state.players
+                  ? this.state.players.map((player, i) => (
                       <TableRow key={i}>
                         <TableCell>
                           <Link to={`/admin_players/add_players/${player.id}`}>
@@ -63,9 +67,11 @@ class AdminPlayers extends Component {
             </Table>
           </Paper>
           <div className="admin_progress">
-            {isLoading ? (
+            {this.state.isloading ? (
               <CircularProgress thickness={7} style={{ color: "#98c5e9" }} />
-            ) : null}
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </AdminLayout>
