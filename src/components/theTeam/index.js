@@ -61,7 +61,6 @@ class TheTeam extends Component {
       : null;
 
   render() {
-    const { players, loading } = this.state;
     return (
       <div
         className="the_team_container"
@@ -69,26 +68,29 @@ class TheTeam extends Component {
           background: `url(${Stripes}) repeat`
         }}
       >
-        {!loading ? (
-          <div className="">
+        {!this.state.loading ? (
+          <div>
             <div className="team_category_wrapper">
               <div className="title">Keepers</div>
               <div className="team_cards">
                 {this.showPlayersByCategory("Keeper")}
               </div>
             </div>
+
             <div className="team_category_wrapper">
               <div className="title">Defence</div>
               <div className="team_cards">
                 {this.showPlayersByCategory("Defence")}
               </div>
             </div>
+
             <div className="team_category_wrapper">
               <div className="title">Midfield</div>
               <div className="team_cards">
                 {this.showPlayersByCategory("Midfield")}
               </div>
             </div>
+
             <div className="team_category_wrapper">
               <div className="title">Strikers</div>
               <div className="team_cards">

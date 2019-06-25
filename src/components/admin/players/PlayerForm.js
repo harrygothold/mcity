@@ -195,7 +195,7 @@ class AddEditPlayers extends Component {
           .ref(`players/${this.state.playerId}`)
           .update(dataToSubmit)
           .then(() => {
-            this.successForm("Updated correctly");
+            this.successForm("Updated correctly - Redirecting...");
             setTimeout(() => {
               this.props.history.push("/admin_players");
             }, 1600);
