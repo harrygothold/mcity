@@ -175,7 +175,7 @@ class AddEditPlayers extends Component {
       this.setState({
         formSuccess: ""
       });
-    }, 2000);
+    }, 1500);
   };
 
   submitForm(event) {
@@ -195,7 +195,10 @@ class AddEditPlayers extends Component {
           .ref(`players/${this.state.playerId}`)
           .update(dataToSubmit)
           .then(() => {
-            this.successForm("Update correctly");
+            this.successForm("Updated correctly");
+            setTimeout(() => {
+              this.props.history.push("/admin_players");
+            }, 1600);
           })
           .catch(e => {
             this.setState({ formError: true });

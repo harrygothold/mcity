@@ -10,6 +10,7 @@ import AdminMatches from "./components/admin/matches";
 import MatchForm from "./components/admin/matches/MatchForm";
 import AdminPlayers from "./components/admin/players";
 import PlayerForm from "./components/admin/players/PlayerForm";
+import TheTeam from "./components/theTeam";
 
 const Routes = props => {
   return (
@@ -21,6 +22,12 @@ const Routes = props => {
           path="/sign_in"
           exact
           component={SignIn}
+        />
+        <PublicRoutes
+          restricted={false}
+          path="/the_team"
+          exact
+          component={TheTeam}
         />
         <PrivateRoute
           {...props}
