@@ -10,7 +10,7 @@ const MatchesHome = () => {
           Matches
         </Tag>{" "}
         <Blocks />
-        <Tag bck="#fff" size="22px" color="#0e1713" link linkto="/the_team">
+        <Tag bck="#fff" size="22px" color="#0e1713" link linkto="/the_matches">
           See more matches
         </Tag>
       </div>

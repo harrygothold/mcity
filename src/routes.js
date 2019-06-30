@@ -11,6 +11,8 @@ import MatchForm from "./components/admin/matches/MatchForm";
 import AdminPlayers from "./components/admin/players";
 import PlayerForm from "./components/admin/players/PlayerForm";
 import TheTeam from "./components/theTeam";
+import TheMatches from "./components/matches";
+import NotFound from "./components/ui/NotFound";
 
 const Routes = props => {
   return (
@@ -28,6 +30,12 @@ const Routes = props => {
           path="/the_team"
           exact
           component={TheTeam}
+        />
+        <PublicRoutes
+          restricted={false}
+          path="/the_matches"
+          exact
+          component={TheMatches}
         />
         <PrivateRoute
           {...props}
@@ -71,6 +79,7 @@ const Routes = props => {
           exact
           component={PlayerForm}
         />
+        <PublicRoutes restricted={false} exact component={NotFound} />
       </Switch>
     </Layout>
   );
